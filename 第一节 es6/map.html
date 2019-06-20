@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = [
+            {
+                name : '张三'
+            },
+            {
+                name : '李四'
+            }
+        ];
+        //map 循环遍历  相当于for循环
+        var arrs = arr.map((ele,index) =>{  // ele 代表循环的对象 index代表数组的下表
+            ele.age = 40;
+            return ele ;
+            //console.log(ele,index)
+        })
+        console.log(arrs)
+    </script>
+</body>
+</html>

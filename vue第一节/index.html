@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>
+            {{  name1}}
+        </div>
+        <div v-html="name2">
+         
+            </div>
+        1231321311{{ name2 }}
+        <!-- {{ name }} {{ name1 }}
+        {{ is ? '' : ''}} 个
+        <ul>
+            <li>{{ name1 }}</li>
+        </ul> -->
+    </div>
+    <script>
+        var vm = new Vue({
+            el : "#app", // 需要挂载到某个元素上
+            data(){ // 数据仓库
+                return {
+                    name : "王五1111",
+                    name1 : "李四",
+                    num : 1,
+                    name2 : "<span>11111</span>"
+                }
+            }
+        })
+    </script>
+    <!-- <script>
+        var el = document.getElementById("app");
+        el.innerHTML = "王五";
+    </script> -->
+</body>
+</html>

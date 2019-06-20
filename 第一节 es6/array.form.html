@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var a = function(a,b){
+            
+        //     //var c = arguments.splice(0,1); // 类数组的特点 不能执行数组的方法;
+        //     var d = Array.from(arguments).splice(1,1);
+        //     console.log(d);
+        // }
+        // a(1,2);
+        // var str = 'abc'; ///str.split("").join()
+        // var ars = Array.from(str);
+        // console.log(ars);
+        var arr = [1,2,1,2,4,4,3];
+        //var arrs = new Set(arr);
+        var arrs = Array.from(new Set(arr));
+        console.log(arrs)
+    </script>
+</body>
+</html>

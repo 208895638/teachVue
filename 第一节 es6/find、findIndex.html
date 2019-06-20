@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // find 和findIndex
+        var arr = [
+            {
+                name : "李四"
+            },
+            {
+                name:"张三"
+            },
+            {
+                name:"张三"
+            },
+            {
+                name : "李四"
+            }
+        ];
+        var arrs = arr.findIndex((ele)=>{
+            return ele.name == "张三"
+        })
+        console.log(arrs)
+    </script>
+</body>
+</html>

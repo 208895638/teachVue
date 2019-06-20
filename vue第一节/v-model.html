@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+    <script src="./lib/jq.js"></script>
+  </head>
+  <body>
+    <div id="app" >
+        用户名<input type="text" v-model="info">
+        {{ info }}
+        密码<input type="password" v-model="pass">
+        <button @click="login">
+            登陆
+        </button>
+    </div>
+
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+           info : "",
+           name:"",
+           pass:""
+          };
+        },
+        methods: {
+            login(){
+                const _this = this;
+                $.ajax({
+                    method : "post", // get或post DELETE update
+                    data:{
+                        hifbackurl:"http://order.gjw.com/UserCenter/MyOrder.html",
+                        prevIndex2:0,
+                        backbbsurl:"",
+                        backurl:"http://order.gjw.com/UserCenter/MyOrder.html",
+                        txtUserName:_this.info,
+                        txtPassword:_this.failed,
+                        txtCode:""
+                    },
+                    url : "http://order.gjw.com/login/Login/Login", // 请求的地址
+                    dataType : "JSON", // 返回数据的类型
+                    success (val){ // 成功返回执行的函数
+                        _this.list = val.data;
+                        console.log(_this.list)
+                    },
+                    failed(val){ // 请求失败的函数
+                        
+                    }
+                });
+            }
+        }
+      });
+    </script>
+  </body>
+</html>
