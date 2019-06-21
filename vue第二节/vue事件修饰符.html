@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+    <style>
+    .box{
+        width: 200px;
+        height: 200px;
+        background: red;
+    }
+    .child{
+        width: 100px;
+        height: 100px;
+        background: blue;
+    }
+    </style>
+</head>
+<body>
+    <div id="app">
+          <div class="box" @click.once="parentEvents">
+                <div class="child" v-on:click.stop="childEvents">
+                    
+                </div>
+          </div>
+          <div @click.alt="doSomething">Do something</div>
+          <a href="https://www.baidu.com" v-on:click.prevent="prents">跳转百度</a>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data(){
+                return {
+                    num : 10
+                }
+            },
+            methods: {
+                doSomething(){
+                    alert(1111);
+                },
+                prents(){
+
+                },
+                parentEvents(){
+                    this.num ++ ;
+                    alert(this.num);
+                },
+                childEvents(){
+                    alert('我是子级');
+                },
+                add(val){
+                    this.num = this.num + val;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

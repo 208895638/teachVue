@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+           <!-- 这是methods里面{{ reveMes() }} -->
+        {{ reverseMessage }}
+           <!-- <button @click="events">点击</button> -->
+    </div>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data(){
+                return {
+                    info : "true1",
+                    num : 10,
+                    list:[
+                        {
+                            age:10
+                        },
+                        {
+                            age:11
+                        }
+                    ]
+                }
+            },
+            
+            computed:{
+                reverseMessage(){
+                    //this.num = this.num + 1;
+                    // return this.num = this.num + 1;
+                    return this.list.map(ele=>{
+                        ele.num = 11;
+                        return ele;
+                    })
+                }
+            },
+            methods: {
+                events(){
+                    this.info = this.info;
+                },
+                reveMes(){
+                    this.num = this.num + 1;
+                    return this.num;
+                    //return this.info.split("").reverse().join("");
+                }
+            }
+        })
+    </script>
+</body>
+</html>

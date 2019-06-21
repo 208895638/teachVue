@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+    <style>
+        .on{
+            color: red;
+        }
+        .green{
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+           <div :class=" num <= 10 ? 'on' : 'green'">
+               1234
+           </div>
+           <div v-bind:class="{ green: num == 9 }">class绑定</div>
+           <hr>
+           <div v-bind:class="[activeClass, errorClass]">数组绑定class</div>
+           <hr>
+           <div :style="{color : 'green'}">
+            内联样式
+           </div>
+           <div :style="{color : red}">
+                内联样式
+            </div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data(){
+                return {
+                    num : 10,
+                    isActive : true,
+                    className : "on",
+                    activeClass : "on",
+                    errorClass : "green",
+                    red : 'red'
+                }
+            },
+            methods: {
+                add(val){
+                    this.num = this.num + val;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
