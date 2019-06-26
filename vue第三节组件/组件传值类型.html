@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="lib/vue.js"></script>
+    <style>
+    h3{
+        color: red
+    }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <is-show prop1="父组件传递的数据" :parinfo="parinfo" :list = "list"></is-show>
+    </div>
+    <script>
+        // 局部注册组件
+        
+        var vm = new Vue({
+            el : "#app",
+            data(){
+                return {
+                    parinfo:true,
+                    list:[
+                        {
+                            name : "张三",
+                            age : 40
+                        },
+                        {
+                            name : "李四",
+                            age : 50
+                        }
+                    ]
+                }
+            },
+            components: {
+                "is-show":{
+                    // props:[
+                    //     "prop1",
+                    //     "parinfo",
+                    //     "list"
+                    // ],
+                    props:{
+                        parinfo:Boolean
+                    },
+                    data () {
+                        return {
+                            info:"我是局部注册的组件",
+                            infos : this.parinfo
+                        }
+                    },
+                    methods: {
+                        changeParent(){
+                            this.infos = !this.infos;
+                        }
+                    },
+                    template:`<div>
+                                <h3> {{ infos }}</h3>
+                                <button @click="changeParent">改变父元素传值</button>
+                            </div>`
+                }
+            }
+        })
+    </script>
+</body>
+</html>

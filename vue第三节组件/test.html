@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="lib/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{ name }}
+        <com @from-child = "aa"></com>
+        <aa></aa>
+        <tem1 @from-child = "bb"></tem1>
+    </div>
+    <script>
+        var bus =new Vue();
+        console.log(bus)
+        Vue.component("aa",{
+            template:"<h2>全局注册的</h2>"
+        })
+        var vm = new Vue({
+            el : "#app",
+            data(){
+                return {
+                    name : 1
+                }
+            },
+            methods:{
+                aa(val){
+                    console.log(val)
+                },
+                bb(val){
+                    console.log(val)
+                }
+            },
+            components: {
+                "com":{
+                    data(){
+                        return {
+                            info : "子元素"
+                        }
+                    },
+                    template:"<h2 @click='toParent'>{{ info }}</h2>",
+                    methods: {
+                        toParent(){
+                            console.log(111);
+                            //this.$emit("from-child","我是子组件传递给父组件的参数");
+                            bus.$emit("user-event","bus传递的参数");
+                        }
+                    }
+                },
+                "tem1":{
+                    data(){
+                        return {
+                            info : "子元素1"
+                        }
+                    },
+                    template:"<h2 @click='toParent'>{{ info }}</h2>",
+                    methods: {
+                        toParent(){
+                            //console.log(111);
+                            //this.$emit("from-child","我是子组件传递给父组件的参数");
+                            //bus.$emit("user-event","bus传递的参数");
+                            
+                        }
+                    },
+                    created () {
+                        bus.$on("user-event",val =>{
+                            this.info = val;
+                                console.log(val,1111)
+                            })
+                    }
+                },
+            }
+        })
+    </script>
+</body>
+</html>
