@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .clearfix:after {
+        /* 给浮动元素的父级元素加上class='clearfix' */
+        content: "";
+        display: block;
+        height: 0;
+        clear: both;
+      }
+      .clearfix {
+        zoom: 1; /* 在IE6/7中,利用zoom:1触发haslayout属性 */
+      }
+      ul {
+        width: 900px;
+        margin: 50px auto;
+      }
+      li {
+        border: 1px solid red;
+        width: 200px;
+        float: left;
+        margin: 20px;
+      }
+      li img {
+        width: 100%;
+      }
+      .mask {
+        position: fixed;
+        display: flex;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.6);
+        top: 0;
+        left: 0;
+      }
+      .mask img {
+        width: 80%;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.bootcss.com/jquery/1.10.1/jquery.js"></script>
+    <script src="./mock.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+            <com @postimg="getimg" @delparent="delItem"  v-for="ite in list" :id="ite.id"  :isshow = "ite.isShow" :key="ite.id"  :img="ite.img" :text="ite.text"></com>
+      </ul>
+      <div class="mask" v-if="bigImg" @click=" bigImg = '' ">
+        <img @click.stop="" :src="bigImg" alt="" />
+      </div>
+    </div>
+    <script>
+        var Random = Mock.Random;
+        var vm = new Vue({
+            el:"#app",
+            data () {
+                return {
+                    bigImg:"",
+                    list:[]
+                }
+            },
+            methods: {
+                delItem(val){
+                    var index = this.list.findIndex(ele => ele.id == val);
+                    this.list.splice(index,1);
+                },
+                getimg(val){
+                    console.log(val);
+                    this.bigImg = val;
+                },
+                init(){
+                    const _this = this ;
+                    for(var i = 0 ; i< 5 ; i++){
+                        var obj = {
+                            id:Random.guid(),
+                            img : Random.dataImage('200x100'),
+                            text : Random.ctitle(),
+                            isShow : false
+                        }
+                        _this.list.push(obj)
+                    }
+                   
+                    // var m = Mock.mock({
+                    //     'list|1-10': [{
+                    //         'id|+1': Random.guid(),
+                    //         "img" : Random.image('200x100'),
+                    //         "text" : Random.ctitle()
+                    //     }]
+                    // });
+                    // console.log(m)
+                    // $.ajax({
+                    //     url: 'hello.json',
+                    //     dataType: 'json'
+                    // }).done(function(data, status, jqXHR){
+                    //     _this.list = data.list;
+                    //     //console.log(data)
+                    // })
+                }
+            },
+            created () {
+               this.init();
+            },
+            components: {
+                com:{
+                    props:[
+                        "img",
+                        "text",
+                        "isshow",
+                        "id"
+                    ],
+                    directives: {
+                        "focus" : {
+                            inserted(el,binding){
+                                el.focus();
+                            },
+                            binding(){
+
+                            }
+                        }
+                    },
+                    data(){
+                        return {
+                            shows : this.isshow,
+                            texts : this.text
+                        }
+                    },
+                    methods:{
+                        del(val){
+                            this.$emit("delparent",val)
+                        },
+                        postImg(val){
+                            this.$emit("postimg",val)
+                        }
+                    },
+                    template:` <li>
+                                <div class="top">
+                                    <img :src="img"  alt="" />
+                                </div>
+                                <div class="cen">
+                                    <div v-if="!shows">
+                                        {{ texts }}
+                                    </div>
+                                    <input @blur="shows = !shows" v-focus v-else  v-model="texts" />
+                                </div>
+                                <div class="bot">
+                                    <button @click="del(id)">
+                                    删除
+                                    </button>
+                                    <button @click="shows = !shows">
+                                    编辑
+                                    </button>
+                                    <button @click="postImg(img)">
+                                    查看大图
+                                    </button>
+                                </div>
+                                </li>`
+                }
+            }
+        })
+    </script>
+  </body>
+</html>

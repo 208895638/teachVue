@@ -1,7 +1,74 @@
 ## es6入门
+> es6 简介
+ECMAScript 6.0（以下简称 ES6）是 JavaScript 语言的下一代标准，已经在 2015 年 6 月正式发布了。它的目标，是使得 JavaScript 语言可以用来编写复杂的大型应用程序，成为企业级开发语言。
+
 > 定义变量 let const
- let 定义的值可以被修改 而const定义的值不能被修改 let和const只作用与当前代码块
+    ES6 新增了let命令，用来声明变量。它的用法类似于var，但是所声明的变量，只在let命令所在的代码块内有效。
+    let 定义的值可以被修改 而const定义的值不能被修改 let和const只作用与当前代码块
+1. let 
+```
+    {
+        let a = 10;
+        var b = 1;
+    }
+
+    console.log(a,b) // ReferenceError: a is not defined. 1
+
+    for (var i = 0; i < 10; i++) {
+       console.log(i);  // i = 10
+    }
+
+    for (let i = 0; i < 10; i++) {
+       console.log(i);  // i = 0,1,2,3,4,5,6,7,8,9
+    }
+    
+```
+2. const  const声明一个只读的常量。一旦声明，常量的值就不能改变。
+```
+    const PI = 3.1415;
+    PI // 3.1415
+
+    PI = 3;
+    // TypeError: Assignment to constant variable.
+```
+上面代码表明改变常量的值会报错。const声明的变量不得改变值，这意味着，const一旦声明变量，就必须立即初始化，不能留到以后赋值。
 > 解构赋值 [a , b] = [1 ,2] 剩余运算符 ...
+1. ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构（Destructuring）。
+```
+    let [a, b, c] = [1, 2, 3];
+```
+上面代码表示，可以从数组中提取值，按照对应位置，对变量赋值。
+本质上，这种写法属于“模式匹配”，只要等号两边的模式相同，左边的变量就会被赋予对应的值。
++ 数组解构
+```
+let [foo, [[bar], baz]] = [1, [[2], 3]];
+foo // 1
+bar // 2
+baz // 3
+
+let [ , , third] = ["foo", "bar", "baz"];
+third // "baz"
+
+let [x, , y] = [1, 2, 3];
+x // 1
+y // 3
+
+let [head, ...tail] = [1, 2, 3, 4];
+head // 1
+tail // [2, 3, 4]
+
+let [x, y, ...z] = ['a'];
+x // "a"
+y // undefined
+z // []
+```
++ 对象解构 解构不仅可以用于数组，还可以用于对象。
+```
+let { foo, bar } = { foo: 'aaa', bar: 'bbb' };
+foo // "aaa"
+bar // "bbb"
+```
+对象的解构与数组有一个重要的不同。数组的元素是按次序排列的，变量的取值由它的位置决定；而对象的属性没有次序，变量必须与属性同名，才能取到正确的值。
 > 箭头函数 
   1. 不带参数的写法 () =>  a 
   2. 带一个参数的写法 a => a
@@ -9,7 +76,7 @@
   4. return 多行写法 (a,b) => {
       return a+b;
   }
-  5. 箭头函数的this指向 settimeout会改变this的指向 如果我们用箭头函数 settimeout就改变不了this的指向
+  5. 箭头函数的this指向 settimeout会改变this的指向 如果我们用箭头函数 箭头函数就指向父级
   ```
     var obj = {
         num : 1,
