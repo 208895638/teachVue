@@ -58,7 +58,27 @@ Vue.js（读音 /vjuː/, 类似于 view） 是一套构建用户界面的 渐进
         })
     </script>
 ```
-    + v-show 控制元素的显示和隐藏  它的特点是在页面里面使用display:none
+    + v-show 控制元素的显示和隐藏  特点是vue在渲染有v-show的节点时这个节点的样式为display:none
+```
+<div id="app">
+      {{ name }}
+      <div v-if="isShow">age : {{ age }}</div>
+      <div v-show="isShow">age : {{ age }}</div>
+    </div>
+
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            name: "王五",
+            age: 30,
+            isShow: false
+          };
+        }
+      });
+    </script>
+```
     + v-if 也是控制元素的显示和隐藏 如果隐藏的话在页面里面这个节点是不会渲染的
     + v-else-if v-else
     + v-for 循环一个数组  里面两个属性 一个ele 一个index ele是每个对象  index是每个下标 用v-for的时候必须有一个key 这个key是唯一的
