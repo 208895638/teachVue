@@ -85,12 +85,39 @@ Vue.js（读音 /vjuː/, 类似于 view） 是一套构建用户界面的 渐进
     </script>
 ```
 ![结果](https://raw.githubusercontent.com/208895638/teachVue/master/%E6%88%AA%E5%9B%BE/v-if%20v-show%E7%9A%84%E5%8C%BA%E5%88%AB.jpg "v-if和v-show的区别")
-    + v-if 也是控制元素的显示和隐藏 如果隐藏的话在页面里面这个节点是不会渲染的
-    + v-else-if v-else
-    + v-for 循环一个数组  里面两个属性 一个ele 一个index ele是每个对象  index是每个下标 用v-for的时候必须有一个key 这个key是唯一的
+4. v-if v-else-if v-else vue的条件语句
+```
+<div id="app">
+        <div v-if="age>30">
+            {{ name }}
+        </div>
+        <div v-else-if="age == 30">
+            {{ name2 }}
+        </div>
+        <div v-else>
+            {{ name1 }}
+        </div>
+    </div>
+
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            name: "王五",
+            name1: "李四",
+            name2:"张三",
+            age: 30,
+            isShow: false
+          };
+        }
+      });
+    </script>
+```
+5. v-for 循环一个数组  里面两个属性 一个ele 一个index ele是每个对象  index是每个下标 用v-for的时候必须有一个key 这个key是唯一的
     ```
      <ul>
-            <li v-for="(item , index) in list" :key="index">
+            <li v-for="(item , index) in list" :key="item.id">
                 {{ item.title }}
             </li>
         </ul>
@@ -121,4 +148,4 @@ Vue.js（读音 /vjuː/, 类似于 view） 是一套构建用户界面的 渐进
             我是标签
         </h2>
     ```
-    + v-once只在页面里面渲染一次
+    + v-once只在页面里面渲染一次 
