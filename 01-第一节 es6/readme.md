@@ -69,13 +69,34 @@ foo // "aaa"
 bar // "bbb"
 ```
 对象的解构与数组有一个重要的不同。数组的元素是按次序排列的，变量的取值由它的位置决定；而对象的属性没有次序，变量必须与属性同名，才能取到正确的值。
-> 箭头函数 
-  1. 不带参数的写法 () =>  a 
-  2. 带一个参数的写法 a => a
-  3. 带多个参数的写法  (a,b) => a+b
-  4. return 多行写法 (a,b) => {
+> 箭头函数  ES6 允许使用“箭头”（=>）定义函数。
+    箭头函数的写法 
+    ```
+    var f = v => v;
+
+    // 等同于
+    var f = function (v) {
+    return v;
+    };
+    ```
+  1. 不带参数的写法
+   ```
+    var f = () =>  a 
+    ```
+  2. 带一个参数的写法
+  ```
+    var f = a => a
+    ```
+  3. 带多个参数的写法 
+  ```
+    var f = (a,b) => a+b
+    ```
+  4. return 多行写法 
+  ```
+   var f = (a,b) => {
       return a+b;
   }
+  ```
   5. 箭头函数的this指向 settimeout会改变this的指向 如果我们用箭头函数 箭头函数就指向父级
   ```
     var obj = {
@@ -96,15 +117,24 @@ bar // "bbb"
         var d = Array.from(arguments).splice(1,1);
         console.log(d);
     }
-    a(1,2);
+    a(1,2);  // 2
 ```
+array.from把字符串转换成数组
 ```
    var str = 'abc'; ///str.split("").join()
-   var ars = Array.from(str);
+   var ars = Array.from(str); // ['a','b','c']
 ```
 数组去重 array.from(new Set(arr))
-> promise 解决回调的写法
 ```
+array.from(new Set([1,2,3,1,2,3,4,1])) // [1,2,3,4]
+```
+> promise 解决回调的写法 
+Promise 是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。它由社区最早提出和实现，ES6 将其写进了语言标准，统一了用法，原生提供了Promise对象。
+
+所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。Promise 提供统一的 API，各种异步操作都可以用同样的方法进行处理。
+
+```
+// 使用jq的ajax获取豆瓣电影接口
 var msg = new Promise(function(resolve,reject){ // resolve 处理成功的函数 reject是处理失败的的函数
         $.ajax({
                method : "post", // get或post DELETE update
@@ -120,20 +150,88 @@ var msg = new Promise(function(resolve,reject){ // resolve 处理成功的函数
     })
     msg
     .then(function(val){
-        console.log(val,"成功请求")
+        console.log(val,"成功请求") // 输出的是请求成功之后的结果
     }).catch(function(val){
         console.log(val,"失败请求")
     })
 ```
-> 常用的数组的操作 map、filter、foreach、some、every、includs、find、findIndex  这几个都是对数组进行循环 
-1. map可以对循环的数组添加一些属性 循环之后再定义一个变量去保存这个循环之后的数组 这个变量的值是改变之后的
-2. forEach 是对数组的循环 但是循环之后再定义一个变量去保存这个循环之后的数组 这个变量的值没有找到
-3. filter 筛选返回符合条件的元素  
-4. some 、 erery
-   + some 当数组里面的元素有某一项符合时就返回一个布尔值 true 如果没有就返回false
-   + every 当数组中的每一项都符合某个条件时就返回true 如果有一项不满足就返回false
-5. includes 当数组中的某一项符合时返回true 不满足返回false 跟indexOf()很像 
-6. find和findIndex 分别是找到某个元素 和找到某个元素对应的一个下表 如果找到那个元素即使下面有符合条件的元素也不会向下执行
+### 常用的数组的操作 map、filter、foreach、some、every、includs、find、findIndex
+>  map的特点
+1. map() JavaScript 数组map()方法主要创建一个新的数组使用调用此数组中的每个元素上所提供的函数的结果。即对数组中的每一项运行给定函数，返回每次函数调用的结果组成的数组。
+```
+var list = [1,2,3,4];
+        var newList = list.map(ele =>{
+            return ele*2
+        });
+        console.log(list,newList) // [1,2,3,4] [2,4,6,8]
+```
+
+2. forEach  方法对数组的每个元素执行一次提供的函数。
+```
+var array1 = ['a', 'b', 'c'];
+
+array1.forEach(function(element) {
+  console.log(element);
+});
+
+//  "a"
+//  "b"
+//  "c"
+```
+3. filter  方法创建一个新的数组，新数组中的元素是通过检查指定数组中符合条件的所有元素。
+```
+var list = [1,2,3,4];
+        var newList = list.filter(ele => ele > 2);
+        console.log(list,newList) // [1,2,3,4] [3,4]
+```
+4. every()与some()方法都是JS中数组的迭代方法。
+
+every()是对数组中每一项运行给定函数，如果该函数对每一项返回true,则返回true。
+
+some()是对数组中每一项运行给定函数，如果该函数对任一项返回true，则返回true。
+```
+var arr = [ 1, 2, 3, 4, 5, 6 ]; 
+ 
+ console.log( arr.some( function( item, index, array ){ 
+     return item > 3; 
+ }));   // true 
+  
+ console.log( arr.every( function( item, index, array ){ 
+     return item > 3; 
+ }));  // false
+```
+   
+5. includes 方法用来判断一个数组是否包含一个指定的值，如果是返回 true，否则false。
+```
+[1, 2, 3].includes(2);     // true
+[1, 2, 3].includes(4);     // false
+[1, 2, 3].includes(3, 3);  // false
+[1, 2, 3].includes(3, -1); // true
+[1, 2, NaN].includes(NaN); // true
+```
+6. find和findIndex find()函数用来查找目标元素，找到就返回该元素，找不到返回undefined，而findIndex()函数也是查找目标元素，找到就返回元素的位置，找不到就返回-1。
+```
+var stu =[
+            {
+                "name": "张三",
+                "gender": "男",
+                "age": 20
+            },
+            {
+                "name": "王小毛",
+                "gender": "男",
+                "age": 20
+            },
+            {
+                "name": "李四",
+                "gender": "男",
+                "age": 20
+            }
+        ]
+        var item = stu.find((element) => (element.name == '李四'))  // 返回的是{name: "李四", gender: "男", age: 20}
+    var index = stu.findIndex((element)=>(element.name =='李四'))  // 返回的是索引下标：2
+    console.log(item , index)
+```
 
 
 

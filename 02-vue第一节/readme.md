@@ -1,9 +1,10 @@
 ## vue起步
+###  vue简介
+Vue.js（读音 /vjuː/, 类似于 view） 是一套构建用户界面的 渐进式框架。与其他重量级框架不同的是，Vue 采用自底向上增量开发的设计。Vue 的核心库只关注视图层，并且非常容易学习
+，非常容易与其它库或已有项目整合。另一方面，Vue 完全有能力驱动采用单文件组件和 Vue 生态系统支持的库开发的复杂单页应用
 > 引入vue
- 1. 开发版本 
- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>  有很多提示
- 2. 生产版本
-  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+ 1. [开发版本](https://cdn.jsdelivr.net/npm/vue/dist/vue.js)  有很多提示
+ 2. [生产版本](https://cdn.jsdelivr.net/npm/vue)
 > vue 语法 
 1. {{ }} 用来插入文本内容
 2. 指令  v-text v-html  
