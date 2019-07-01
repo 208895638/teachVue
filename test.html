@@ -14,16 +14,14 @@
   </head>
   <body>
     <div id="app">
-      <div :class=" num <= 10 ? 'on' : 'green'">
-        1234
-      </div>
+        <div v-bind:class="{ on : isActive }">class绑定</div>
     </div>
     <script>
       var vm = new Vue({
         el: "#app",
         data(){
             return {
-                num : 9
+                isActive : true
             }
         }
       });
