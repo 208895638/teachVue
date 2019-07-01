@@ -63,7 +63,7 @@ Vue.js（读音 /vjuː/, 类似于 view） 是一套构建用户界面的 渐进
     </script>
 ```
 3. 指令v-show 控制元素的显示和隐藏  特点是vue在渲染有v-show的节点时这个节点的样式为display:none v-if 也是控制元素的显示和隐藏 如果隐藏的话在页面里面这个节点是不会渲染的
-+ 例  v-show 
++ 例 v-if v-show 
 ```
 <div id="app">
       {{ name }}
@@ -84,6 +84,7 @@ Vue.js（读音 /vjuː/, 类似于 view） 是一套构建用户界面的 渐进
       });
     </script>
 ```
+![结果](https://raw.githubusercontent.com/208895638/teachVue/master/%E6%88%AA%E5%9B%BE/v-if%20v-show%E7%9A%84%E5%8C%BA%E5%88%AB.jpg "v-if和v-show的区别")
     + v-if 也是控制元素的显示和隐藏 如果隐藏的话在页面里面这个节点是不会渲染的
     + v-else-if v-else
     + v-for 循环一个数组  里面两个属性 一个ele 一个index ele是每个对象  index是每个下标 用v-for的时候必须有一个key 这个key是唯一的
