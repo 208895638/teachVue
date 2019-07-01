@@ -1,5 +1,5 @@
 ## vue
-> 计算属性 computed 它是一个对象 这个对象里面有很多方法 用于计算
+> computed 在vue中一些数据经常依赖于别的数据做出改变，且改变的逻辑也较复杂，这个时候就需要用到计算属性computed。通俗来说就是当前数据不是确定的，要经常做出改变，而这个改变是其他数据改变导致的。只要在它的函数里引用了 data 中的某个属性，当这个属性发生变化时，函数仿佛可以嗅探到这个变化，并自动重新执行。
 ```
 <!DOCTYPE html>
 <html lang="en">
@@ -97,8 +97,11 @@
 </body>
 </html>
 ```
-+ 计算属性和侦听器主要的区别是计算属性会缓存我们计算的解构
-> vue事件 
++ 计算属性和侦听器主要的区别
+计算属性顾名思义就是通过其他变量计算得来的另一个属性,另外，计算属性具有缓存。计算属性是基于它们的依赖进行缓存的。计算属性只有在它的相关依赖发生改变时才会重新求值。
+
+而侦听器watch是侦听一个特定的值，当该值变化时执行特定的函数。例如分页组件中，我们可以监听当前页码，当页码变化时执行对应的获取数据的函数。
+> vue事件  可以用 v-on 指令监听 DOM 事件，并在触发时运行一些 JavaScript 代码。
 1. 写法是v-on:["click","mouseover"] = "在这个引号里面执行一些表达式"
 ```
  <div id="app">
@@ -144,7 +147,7 @@
 </body>
 </html>
  ```
-3. 事件修饰符 prevent stop once
+3. 事件修饰符 .prevent(阻止默认事件) .stop(阻止事件冒泡) .once(只触发一次)
 ```
 <!DOCTYPE html>
 <html lang="en">
@@ -204,18 +207,32 @@
 </body>
 </html>
 ```
-4. 事件简写 v-on:click 简写为@click
+4. vue事件的简写 v-on:click 简写为@click
 5. 系统修饰符(按键) alt shift delete 空格等 用法是比如有一个点击事件 我们直接在后面加上我们需要的系统修饰符
 ```
-<div @click.alt="doSomething">Do something</div>
+<div @click.alt="alert('alt按键执行了!')">Do something</div>
 ```
+### 操作元素的 class 列表和内联样式是数据绑定的一个常见需求。因为它们都是属性，所以我们可以用 v-bind 处理它们：只需要通过表达式计算出字符串结果即可。不过，字符串拼接麻烦且易错。因此，在将 v-bind 用于 class 和 style 时，Vue.js 做了专门的增强。表达式结果的类型除了字符串之外，还可以是对象或数组。
 > class绑定  
-1. 三元运算符
+1. 三元运算符 
 ```
-    <div :class=" num <= 10 ? 'on' : 'green'">
+    <div id="app">
+      <div :class=" num <= 10 ? 'on' : 'green'">
         1234
- </div>
+      </div>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data(){
+            return {
+                num : 9
+            }
+        }
+      });
+    </script>
 ```
+
 2. 对象写法  :class = 第一个参数是需要绑定的class名称 第二个参数是一个表达式或者布尔值
 ```
 <div v-bind:class="{ green: isActive }">class绑定</div>

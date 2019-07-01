@@ -1,33 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-</head>
-<body>
+    <script src="05-vue/lib/vue.js"></script>
+    <style>
+        .on{
+            color: red;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div :class=" num <= 10 ? 'on' : 'green'">
+        1234
+      </div>
+    </div>
     <script>
-       var stu =[
-            {
-                "name": "张三",
-                "gender": "男",
-                "age": 20
-            },
-            {
-                "name": "王小毛",
-                "gender": "男",
-                "age": 20
-            },
-            {
-                "name": "李四",
-                "gender": "男",
-                "age": 20
+      var vm = new Vue({
+        el: "#app",
+        data(){
+            return {
+                num : 9
             }
-        ]
-        var item = stu.find((element) => (element.name == '李四'))  // 返回的是{name: "李四", gender: "男", age: 20}
-    var index = stu.findIndex((element)=>(element.name =='李四'))  // 返回的是索引下标：2
-    console.log(item , index)
+        }
+      });
     </script>
-</body>
+  </body>
 </html>
