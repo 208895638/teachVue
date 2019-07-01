@@ -232,7 +232,7 @@
       });
     </script>
 ```
-
+![结果](https://raw.githubusercontent.com/208895638/teachVue/master/%E6%88%AA%E5%9B%BE/%E4%B8%89%E5%85%83%E8%BF%90%E7%AE%97%E7%AC%A6.jpg "三元运算符渲染class类名")
 2. 对象写法  :class = 第一个参数是需要绑定的class名称 第二个参数是一个表达式或者布尔值
 ```
 <div v-bind:class="{ green: isActive }">class绑定</div>
