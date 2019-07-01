@@ -27,7 +27,7 @@ Vue.js（读音 /vjuː/, 类似于 view） 是一套构建用户界面的 渐进
 ```
 2. 指令  v-text v-html  
     + v-text是用于操作纯文本，它会替代显示对应的数据对象上的值。当绑定的数据对象上的值发生改变，插值处的内容也会随之更新。
-    ```
+```
  <div id="app">
     <div v-text="name"></div>
 </div>
@@ -43,7 +43,7 @@ Vue.js（读音 /vjuː/, 类似于 view） 是一套构建用户界面的 渐进
     </script>
 ```
     + v-html用于输出html，它与v-text区别在于v-text输出的是纯文本，浏览器不会对其再进行html解析，但v-html会将其当html标签解析后输出。
-        ```
+```
  <div id="app">
     <div v-html="name"></div>
 </div>
