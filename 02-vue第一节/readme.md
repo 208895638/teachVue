@@ -62,7 +62,8 @@ Vue.js（读音 /vjuː/, 类似于 view） 是一套构建用户界面的 渐进
         })
     </script>
 ```
-    + v-show 控制元素的显示和隐藏  特点是vue在渲染有v-show的节点时这个节点的样式为display:none
+3. 指令v-show 控制元素的显示和隐藏  特点是vue在渲染有v-show的节点时这个节点的样式为display:none v-if 也是控制元素的显示和隐藏 如果隐藏的话在页面里面这个节点是不会渲染的
++ 例  v-show 
 ```
 <div id="app">
       {{ name }}
