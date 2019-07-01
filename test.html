@@ -15,13 +15,17 @@
   <body>
     <div id="app">
         <div v-bind:class="{ on : isActive }">class绑定</div>
+        <div :style="{color : red}">
+                内联样式
+            </div>
     </div>
     <script>
       var vm = new Vue({
         el: "#app",
         data(){
             return {
-                isActive : true
+                isActive : true,
+                red:"red"
             }
         }
       });

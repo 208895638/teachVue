@@ -236,7 +236,18 @@
 2. 对象写法  :class = 第一个参数是需要绑定的class名称 第二个参数是一个表达式或者布尔值
 ```
 <div v-bind:class="{ green: isActive }">class绑定</div>
+<script>
+      var vm = new Vue({
+        el: "#app",
+        data(){
+            return {
+                isActive : true
+            }
+        }
+      });
+    </script>
 ```
+![对象写法截图](https://raw.githubusercontent.com/208895638/teachVue/master/%E6%88%AA%E5%9B%BE/%E7%BB%91%E5%AE%9Aclass%E7%9A%84%E5%AF%B9%E8%B1%A1%E5%86%99%E6%B3%95.jpg "对象写法截图")
 3. 数组写法
 ```
 <div v-bind:class="[activeClass, errorClass]">数组绑定class</div>
@@ -257,7 +268,18 @@
     内联样式
 </div>
 这个是不加引号的 
- <div :style="{color : red}">
-                内联样式
-            </div>
+    <div :style="{color : red}">
+        内联样式
+    </div>
+    <script>
+        var vm = new Vue({
+        el: "#app",
+        data(){
+            return {
+                isActive : true,
+                red:"red"
+            }
+        }
+        });
+    </script>
 ```
