@@ -6,43 +6,47 @@ Vue.js（读音 /vjuː/, 类似于 view） 是一套构建用户界面的 渐进
 > 引入vue
  1. [开发版本](https://cdn.jsdelivr.net/npm/vue/dist/vue.js)  包含完整的警告和调试模式
  2. [生产版本](https://cdn.jsdelivr.net/npm/vue) 删除了警告，33.30KB min+gzip
-> vue 常用指令 
+> vue 常用指令 {{}} 、 v-text 、 v-html 、 v-show 、 v-if v-else-if v-else 、 v-for 、 v-bind 、v-once 、 v-model
+**下面所有的例子必须在引入vue的前提下才能运行**
+
 1. {{ }} 用来插入文本内容
 ```
- <div id="app">
+<div id="app">
     <div>
         {{  name }}    
     </div>
 </div>
 <script>
-        var vm = new Vue({
-            el : "#app", // 需要挂载到某个元素上
-            data(){ // 数据仓库
-                return {
-                    name : "王五1111"
-                }
+    var vm = new Vue({
+        el : "#app", // 需要挂载到某个元素上
+        data(){ // 数据仓库
+            return {
+                name : "王五1111"
             }
-        })
-    </script>
+        }
+    })
+</script>
 ```
 2. 指令  v-text v-html  
     + v-text是用于操作纯文本，它会替代显示对应的数据对象上的值。当绑定的数据对象上的值发生改变，插值处的内容也会随之更新。
+    + v-html用于输出html，它与v-text区别在于v-text输出的是纯文本，浏览器不会对其再进行html解析，但v-html会将其当html标签解析后输出。
+例 v-text 
 ```
- <div id="app">
+<div id="app">
     <div v-text="name"></div>
 </div>
 <script>
-        var vm = new Vue({
-            el : "#app", // 需要挂载到某个元素上
-            data(){ // 数据仓库
-                return {
-                    name : "王五1111"
-                }
+    var vm = new Vue({
+        el : "#app", // 需要挂载到某个元素上
+        data(){ // 数据仓库
+            return {
+                name : "王五1111"
             }
-        })
-    </script>
+        }
+    })
+</script>
 ```
-    + v-html用于输出html，它与v-text区别在于v-text输出的是纯文本，浏览器不会对其再进行html解析，但v-html会将其当html标签解析后输出。
+例 v-html
 ```
  <div id="app">
     <div v-html="name"></div>
