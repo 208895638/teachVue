@@ -10,15 +10,17 @@
 <body>
     <div id="app">
         <com>
-            <template v-slot:header>
-                <h1>标题</h1>
-            </template>
-            <template v-slot:main>
-                <h2>内容</h2>
-            </template>
-            <template v-slot:footer>
-                <h3>底部内容</h3>
-            </template>
+           父元素
+           <!--  具名插槽的简写 -->
+           <template #header> 
+                这个是header
+           </template>
+           <template #main>
+                这个是main
+           </template>
+           <template #footer>
+                这个是main
+           </template>
         </com>
     </div>
     <script>
@@ -33,15 +35,10 @@
                 "com" : {
                     template:`
                     <div class="container">
-                        <header>
-                            <slot name="header"></slot>
-                        </header>
-                        <main>
-                            <slot name="main"></slot>
-                        </main>
-                        <footer>
-                            <slot name="footer"></slot>
-                        </footer>
+                        <slot></slot>
+                       <slot name="header"></slot>
+                       <slot name="main"></slot>
+                       <slot name="footer"></slot>
                     </div>
                     `
                 }

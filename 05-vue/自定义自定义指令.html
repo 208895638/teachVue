@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="lib/vue.js"></script>
+    
+</head>
+<body>
+    <!-- vue提供的内置指令 v-model v-text v-html -->
+    <!-- 自定义指令 帮助我们操作dom元素-->
+    <div id="app">
+        <!-- <div v-color>
+            {{name}}
+        </div> -->
+        <input type="text" v-if="isShow" v-focus>
+        <button @click="isShow = !isShow">
+            取反
+        </button>
+    </div>
+    <script>
+        // 全局写法  
+        // Vue.directive('color',{
+        //     inserted(el,binding,vnode,oldVnode){ // div插入到文档的之后执行的钩子函数
+        //         console.log(el,binding,"inserted");
+        //         //el.style.color="blue";
+        //     },
+        //     bind(el,binding){ // div绑定到dom的时候执行的钩子函数
+        //         console.log(el,binding,"bind");
+        //         el.style.color="red";
+        //     }
+        // })
+        var that ;
+        var vm = new Vue({
+            el : "#app",
+            data () {
+                return {
+                    name : "张三",
+                    isShow:false
+                }
+            },
+            created () {
+                that = this;
+            },
+            directives: {
+                focus:function (el, binding) {
+                    console.log(this) // this指向的是window
+                    // setTimeout(function(){
+                    //     el.focus()
+                    // })
+                    // vue提供了一个替代settimeout延迟执行的方法 nextTick
+                    that.$nextTick(function(){
+                        el.focus()
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+</html>

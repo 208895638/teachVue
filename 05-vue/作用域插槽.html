@@ -9,37 +9,40 @@
 </head>
 <body>
     <div id="app">
-        
-        <com>
-            
-            <template v-slot:default="slotProps">
-                {{ slotProps.user.age }}  {{ slotProps.info }}
-            </template>
+        <com >
+                <template v-slot:default="slotProps">
+                    
+                    {{ slotProps.info }}{{ slotProps.age }}
+                </template>
         </com>
     </div>
     <script>
         var vm = new Vue({
-            el:"#app",
-            data () {
+            el : "#app",
+            data(){
                 return {
-                    info:1
+                    list:[
+                        {
+                            name:"张三",
+                            age : 40
+                        },
+                        {
+                            name:"李四",
+                            age : 40
+                        },
+                    ]
                 }
             },
             components: {
-                "com" : {
+                com : {
                     data(){
                         return {
-                            user:{
-                                name : "张三",
-                                age : 40
-                            },
-                            info:"111"
+                            info:"张三",
+                            age:40
                         }
                     },
                     template:`
-                    <div class="container">
-                        {{ user.name }} <slot :user="user" :info="info"></slot>
-                    </div>
+                        <h2>{{info}}<slot :info="info" :age="age"></slot></h2>
                     `
                 }
             }

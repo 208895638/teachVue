@@ -6,11 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="lib/vue.js"></script>
+    <style>
+        .red{
+            color: red;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
-        <component v-bind:is="com"></component>
-        <button @click="com = 'com1'">
+        <!-- <com></com>
+        <com1></com1> -->
+        <!-- keepalive会将我们之前的组件缓存起来 -->
+        <keep-alive> 
+            <component :is="currentComponent"></component>
+        </keep-alive>
+        <button @click="changeComponent">
             切换组件
         </button>
     </div>
@@ -19,21 +29,43 @@
             el:"#app",
             data () {
                 return {
-                    info:1,
-                    com:"com"
+                    com:"com",
+                    com1:"com1",
+                    com2:"com2",
+                    currentComponent:"com"
+                }
+            },
+            methods:{
+                changeComponent(){
+                    if(this.currentComponent == "com"){
+                        this.currentComponent = "com1"
+                    }else if(this.currentComponent == "com1"){
+                        this.currentComponent = "com2"
+                    }else if(this.currentComponent == "com2"){
+                        this.currentComponent = "com"
+                    }
                 }
             },
             components: {
-                "com" : {
-                    template:`
-                    <div>组件1</div>
-                    `
+                com:{
+                    template:"<h2>组件一里面的内容</h2>"
                 },
-                "com1" : {
-                    template:`
-                    <div>组件2</div>
-                    `
+                com1:{
+                    template:"<h2>组件二里面的内容</h2>"
                 },
+                com2:{
+                    data(){
+                        return {
+                            nowIndex:100
+                        }
+                    },
+                    template:`
+                        <ul>
+                            <li @click="nowIndex = 0" :class="{red:nowIndex == 0}">张三</li>
+                            <li @click="nowIndex = 1" :class="{red:nowIndex == 1}">李四</li>
+                        </ul>
+                    `
+                }
             }
         })
     </script>

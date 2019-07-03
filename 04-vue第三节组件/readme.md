@@ -55,14 +55,42 @@
     </script>
 ```
 > 组件的大小写问题 
-在dom里面是不识别大写的 浏览器会把  如果要识别的话需要用-连接 如
-
-> 组件的特点
- 组件之间的数据是不相通的
-> 组件传值 通过props传值 这个props是写在我们组件里面的一个属性 传值通过这个属性来传值的
+在dom里面是不识别大写的 浏览器会把标签中的大写转换成小写  如果要识别的话需要用-连接 如
 ```
 <div id="app">
-        <is-show prop1="'父组件传递的数据'" :parinfo="parinfo"></is-show>
+        <H2>标题</H2>
+        <is-show></is-show>
+    </div>
+    <script>
+        // 局部注册组件
+        
+        var vm = new Vue({
+            el : "#app",
+            components: {
+                "isShow":{
+                    data () {
+                        return {
+                            info:"我是局部注册的组件"
+                        }
+                    },
+                    template:"<h3>{{ info }}</h3>"
+                }
+            }
+        })
+    </script>
+```
+在页面里面就会渲染成
+![组件大小写](https://raw.githubusercontent.com/208895638/teachVue/master/%E6%88%AA%E5%9B%BE/%E7%BB%84%E4%BB%B6%E5%A4%A7%E5%B0%8F%E5%86%99.jpg "组件大小写")
+
+> 组件的特点
+ 
+ 1. data 必须是一个函数
+ 2. 组件是密封的 组件之间的数据是相互独立的 也就是说即使写几个组件 更改其中的某一个组件之间的值 其他的组件也不会受到影响
+ 3. 组件模板中只能有一个根元素
+> 组件传值 组件是密封的 所有想给某个组件传值 vue提供了props 通过props传值 这个props是写在我们组件里面的一个属性 传值通过这个属性来传值的
+```
+<div id="app">
+        <is-show prop1="父组件传递的数据" :parinfo="parinfo"></is-show>
     </div>
     <script>
         // 局部注册组件
@@ -91,7 +119,7 @@
         })
     </script>
 ```
-> props类型  有八种类型
+> props类型检测 props类型  有八种类型
 作用就是对我们传递的数据进行类型检查 
 1. String
 2. Number
@@ -132,7 +160,7 @@
             }
 ```
 > 子组件向父元素传递值  这个是通过自定义事件来完成的
-首先子组件向父元素传递事件  然后在这个子组件名称里面响应这个事件  在父元素的事件里面绑定这个事件 这个就是子组件向父元素进行传值
+首先子组件向父元素传递事件  然后在这个子组件名称里面响应这个事件  在父元素的事件里面绑定这个事件 这个就是子组件向父元素进行传值 
 ```
 <!DOCTYPE html>
 <html lang="en">
@@ -271,7 +299,7 @@
 </html>
 ```
 > 生命周期 beforeCreated created beforeMounted mounted beforeUpdate update beforeDestroy destroy
-1. 生命周期里面常用的两个生命周期钩子  一个是created 一个是mounted
+1. 生命周期里面常用的两个生命周期钩子  一个是created 一个是mounted 常用做获取数据
 2. created和mounted的区别是一个不可以操作dom 一个可以操作dom  这个created我们用引入vue的方式是可以的  但是在vue-cli中是不可以的
 
 > .sync 修饰符  我们可以对我们传入的数据进行更改 写法是在我们需要给组件传递的数据加一个.sync  在更改的时候传一个 this.$emit("update:+我们接收的属性");

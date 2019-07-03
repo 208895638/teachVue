@@ -7,26 +7,71 @@
     <title>Document</title>
     <script src="05-vue/lib/vue.js"></script>
     <style>
-        .on{
-            color: red;
-        }
+      .box{
+        width: 100px;
+        height: 100px;
+        background: red;
+      }
+      p{
+        background: blue;
+        height: 100px;
+      }
+      .height-enter{
+        height: 0;
+      }
+      .height-enter-to{
+        height: 100px;
+      }
+      .height-leave{
+        height: 100px;
+      }
+      .height-leave-to{
+        height: 0;
+      }
+      .height-leave-active,.height-enter-active{
+        transition: 3s ease-in;
+      }
     </style>
   </head>
   <body>
     <div id="app">
-        <div v-bind:class="{ on : isActive }">class绑定</div>
-        <div :style="{color : red}">
-                内联样式
-            </div>
+        <transition name="height" mode="out-in">
+          <div class="box" v-if="isShow">
+
+          </div>
+          <p v-else>
+            文字
+          </p>
+        </transition>
+        <button @click="isShow = !isShow">
+          取反
+        </button>
     </div>
     <script>
+      var that ;
       var vm = new Vue({
-        el: "#app",
+        el:"#app",
         data(){
-            return {
-                isActive : true,
-                red:"red"
-            }
+          return {
+            info:111,
+            isShow:false
+          }
+        },
+        created () {
+          console.log("我是混入的对象!");
+          that = this;
+        },
+        directives: {
+          aaa(el){
+              // console.log(el,this,that);
+              //  that.$nextTick(function(){
+                el.focus()
+                // })
+              // setTimeout(()=>{
+              //   el.focus()
+              // })
+              
+          }
         }
       });
     </script>

@@ -1,0 +1,1 @@
+import a from "./src/main.js";  // 这个是es6的导入模块

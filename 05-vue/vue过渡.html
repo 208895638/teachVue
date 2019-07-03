@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="lib/vue.js"></script>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+        p{
+            background: blue;
+            height: 100px;
+        }
+        /*  代表初始的状态 */
+        .heights-enter{ 
+            height: 0;
+        }
+        /* 代表进入的时候结束时的状态 */
+        .heights-enter-to{
+            height: 100px;
+        }
+        .heights-enter-active,.heights-leave-active{
+            transition: .3s ease-in;
+        }
+        /* 离开的时候执行的类名 */
+        .heights-leave{
+            height: 100px;
+        }
+        /* 代表结束之后的状态 */
+        .heights-leave-to{
+            height: 0;
+        }
+        /* 结束的时候的一个过渡状态 */
+        
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!--  这个transition组件是vue提供的过渡组件 -->
+        <transition name="heights" mode="out-in"> 
+            <div class="box" v-if="isShow">
+
+            </div>
+            <p v-else>
+                这是p标签
+            </p>
+        </transition>
+        <button @click="isShow = !isShow">
+            切换box的高度
+        </button>
+    </div>
+    <script>
+        var vm = new Vue({
+            el :"#app",
+            data () {
+                return {
+                    isShow:false
+                }
+            }
+        })
+    </script>
+</body>
+</html>
