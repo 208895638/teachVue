@@ -131,7 +131,7 @@ export default new Router({
 ### 嵌套路由 
 > 简介 实际生活中的应用界面，通常由多层嵌套的组件组合而成。同样地，URL 中各段动态路径也按某种结构对应嵌套的各层组件，例如：
 ```
-/user/foo/profile                     /user/foo/posts
+/user/profile                     /user/posts
 +------------------+                  +-----------------+
 | User             |                  | User            |
 | +--------------+ |                  | +-------------+ |
@@ -144,16 +144,16 @@ export default new Router({
 ```
 const router = new VueRouter({
   routes: [
-    { path: '/user/:id', component: User,redirect:"/user/:id/profile"
+    { path: '/user', component: User,redirect:"/user/profile"
       children: [
         {
-          // 当 /user/:id/profile 匹配成功，
+          // 当 /user/profile 匹配成功，
           // UserProfile 会被渲染在 User 的 <router-view> 中
           path: 'profile',
           component: UserProfile
         },
         {
-          // 当 /user/:id/posts 匹配成功
+          // 当 /user/posts 匹配成功
           // UserPosts 会被渲染在 User 的 <router-view> 中
           path: 'posts',
           component: UserPosts
