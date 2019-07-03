@@ -81,7 +81,9 @@ new Vue({
 7. 最后一步 在我们的app.vue里面加一个组件router-view
 ```
 <router-link to="/">跳转到首页</router-link>
+<router-link :to="{path:'/'}">跳转到首页</router-link>
     <router-link to="/mine">跳转到mine页</router-link>
+
     <router-view></router-view>
 ```
 router-view这个组件是一个容器 我们页面的路由所对应的组件都渲染在这个容器里面
@@ -123,6 +125,8 @@ export default new Router({
 <router-link to="/mine/2">跳转到mine页</router-link>
 <router-link to="/mine/3">跳转到mine页</router-link>
 <router-link to="/mine/4">跳转到mine页</router-link>
+<router-link :to="{name:'mine',params:{id:1}}">跳转到mine页</router-link>
+这里需要注意的一点就是 当路由是动态路由的时候我们得用命名路由的方式跳转
 ```
 ### 嵌套路由 
 > 简介 实际生活中的应用界面，通常由多层嵌套的组件组合而成。同样地，URL 中各段动态路径也按某种结构对应嵌套的各层组件，例如：
@@ -140,7 +144,7 @@ export default new Router({
 ```
 const router = new VueRouter({
   routes: [
-    { path: '/user/:id', component: User,
+    { path: '/user/:id', component: User,redirect:"/user/:id/profile"
       children: [
         {
           // 当 /user/:id/profile 匹配成功，
