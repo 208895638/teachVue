@@ -128,5 +128,6 @@ scrollBehavior (to, from, savedPosition) {
 component:() => import( '@/view/mine/mine.vue')
 ```
 
-
+###  登陆鉴权
+在客户端发送账号密码到服务端，服务端验证成功后返回token存储用户的权限，前端用Cookie把token存储在本地，在路由跳转（router.beforeEach）中判断是否存在token，另外前端可以通过token请求服务端获取userInfo，在vuex中存储着用户的信息（用户名，头像，注册时间等等）。
 
