@@ -76,6 +76,7 @@ list(){
 ```
 ### 更改state里面的值 mutations(同步提交)
  更改state里面的值 更改 Vuex 的 store 中的状态的唯一方法是提交 mutation。Vuex 中的 mutation 非常类似于事件：每个 mutation 都有一个字符串的 事件类型 (type) 和 一个 回调函数 (handler)。这个回调函数就是我们实际进行状态更改的地方，并且它会接受 state 作为第一个参数
+ "同步模式"就是上一段的模式，后一个任务等待前一个任务结束，然后再执行。
 
 在mutation里面写入更改的函数 函数的第一个参数代表 state 更改vuex中的state是通过更改这个参数实现的 
 [Mutation 必须是同步函数](https://vuex.vuejs.org/zh/guide/mutations.html#mutation-%E5%BF%85%E9%A1%BB%E6%98%AF%E5%90%8C%E6%AD%A5%E5%87%BD%E6%95%B0 "Mutation 必须是同步函数")
@@ -128,10 +129,11 @@ export default new Vuex.Store({
   }
 })
 ```
+
 ### action(异步更改state)
 Action 类似于 mutation，不同在于：
 
-+ Action 提交的是 mutation，而不是直接变更状态。
++ Action 提交的是 mutation，而不是直接变更状态。  // action 里面提交数据是提交mutation 在mutation里面是直接修改state
 + Action 可以包含任意异步操作。
 
 ```

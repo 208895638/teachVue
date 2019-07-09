@@ -16,3 +16,9 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+.home{
+  height: 900px;
+  background: red;
+}
+</style>

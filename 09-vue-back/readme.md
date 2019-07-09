@@ -8,7 +8,7 @@
 一是在地址中加入＃以欺骗浏览器 ，地址的改变是由于正在进行页内导航 。
 二是使用 HTML5的window. history 功能，使用 history api 来模拟一个完整的 URL
 将单页程序分割为各自功能合理的组件或者页面，路由起到了一个非常重要作用
-就是连接单页程序中各页面之间的链条，
+就是连接单页程序中各页面之间的链条
 ### 安装 
 > 安装router 
  ```
@@ -157,7 +157,12 @@ beforeRouteUpdate (to, from, next) {
           path: 'test',
           name: 'test',
           component: test,
-        }
+        },
+        {
+          path: 'test',
+          name: 'test',
+          component: test,
+        },
       ]
     },
 ```
@@ -191,12 +196,12 @@ watch: {
 ```
 ### 导航状态样式 
 默认情况下当router- link对应的路由匹配成功时 就会自动设置 class 属性值为 router-link-active ，如
-我们想要将“激活”状态样式类命名为 active ，可以通过 linkActiveClass:"active ",  属性进行设置。
+我们想要将“激活”状态样式类命名为 active ，可以通过 linkActiveClass:"active ",  属性进行设置。 在路由配置文件里面设置
 > 精确匹配与包含匹配
 1. 包含匹配
 router-link添加激活状态样式类的默认依据是对 URL 地址的全包含匹配 举个
 ，如果 前的路径是/home ，那么 router-link to＝"/" 也会被匹配井设 css 类名
-2. 想要链接使用“精确匹配模式”，则使用 exact 属性(只想匹配/home)。
+2. 想要链接使用“精确匹配模式”，则使用 exact 属性(只想匹配/home)。 router-link 添加一个属性exact
 
 ### 命名视图 过一个名称来标识一个路由
 

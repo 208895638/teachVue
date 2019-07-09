@@ -1,37 +1,22 @@
 <template>
   <div id="app">
-    <div @click="update">
-      {{ list }}
-    </div>
+    <transition name="left">
+      <router-view  class="main"/>
+    </transition>
     
-    <div id="nav">
+    <div id="nav" v-if="$route.meta.footShow">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
-    <router-view/>
+    
   </div>
 </template>
-<script>
-export default {
-  data () {
-    return {
-      
-    }
-  },
-  methods: {
-    update(){
-      this.$store.dispatch('syncUpdate',5)
-    }
-  },
-  computed: {
-    list(){
-      return this.$store.getters.nums
-    }
-  }
-}
-</script>
 
 <style lang="scss">
+body,html{
+  width: 100%;
+  height:100%;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -50,3 +35,25 @@ export default {
   }
 }
 </style>
+<style lang="scss" scoped>
+.left-enter{
+  transform: translateX(100%);
+}
+
+.left-enter-active{
+  transition: .3s ease-in;
+}
+#app{
+  height:100%;
+  display: flex;
+  flex-direction: column;
+  .main{
+    flex: 1;
+    overflow: auto;
+  }
+  #nav{
+    border-top: 1px solid #ccc;
+  }
+}
+</style>
+
