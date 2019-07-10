@@ -150,7 +150,7 @@ export default moduleB
 `namespaced: true,` 
 3. 启用命名空间之后 获取getters mutations actions的写法都要变 
 
-```
+
 ```
 
 const moduleA = {   // moduleA
@@ -187,7 +187,7 @@ const moduleB = {
   }
 export default moduleB
 ```
-```
+
 4. 启用命名空间后辅助函数 mapState mapGetters mapMutations mapActions 的写法
 +  启用命名空间后的mapState的写法 
 ``` 
