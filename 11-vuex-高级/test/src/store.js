@@ -45,6 +45,7 @@ const moduleB = {
   actions: {  }
 }
 
+
 const store = new Vuex.Store({
   modules: {
     a: moduleA,

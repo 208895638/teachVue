@@ -37,7 +37,7 @@ export default new Vuex.Store({
 + state 一－ vuex store 实例的根状态对象，用于定义共享的状态变量，就像 Vue 实例中data
 + mutations 一 可以理解为 store的methods(同步操作 )
 + getters 一 读取器，外部程序通过它获取变量的具体值，或者在取值前做一些计算（可以认为是 store 的计算属性）
-+ mutations  以理解为 store的methods(异步操作 如ajax)
++ actions  以理解为 store的methods(异步操作 如ajax)
 + modules 以模块化的方式写vuex (如购物车对应一个module 个人中心对应一个module )
 
 5. 挂载倒vue实例类上
