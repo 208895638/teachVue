@@ -10,6 +10,7 @@
 </template>
 <script>
 import api from "@/api"
+import qs from "qs"
 //import axios from "axios";
 //import qs from "qs";
 //import { Loading } from 'element-ui';
@@ -54,7 +55,13 @@ export default {
      
     },
     getUserInfo(){
-       return this.$ajax.post('/user',datas  )
+      let datas = {
+        Mob:18311111111,
+        validcode:"815961",
+        use:"regiVali"
+      };
+      this.$ajax.post('http://order.gjw.com/Order_Api/GetValiCode',datas )
+       //return this.$ajax.post('/user',datas  )
     }
   },
   created () {

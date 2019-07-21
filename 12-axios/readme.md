@@ -11,7 +11,7 @@ Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js �
 + 自动转换 JSON 数据
 + 客户端支持防御 `XSRF`(跨站请求伪造)
 
-### axios安装 
+### axios安装  vue-resource 尤 不再维护  推荐使用axios
 
 使用 npm:
 
@@ -142,7 +142,7 @@ export default {
 }
 </script>
 ```
-+ qs模块 qs模块在axios中默认自带
++ qs模块 qs模块在node中默认自带
 ``` html
 <script>
 import axios from "axios";
@@ -220,9 +220,10 @@ if(process.env.NODE_ENV == "development"){
 }
 </script>
 ```
-+ `axios.defaults.headers.common['Authorization'] = AUTH_TOKEN`;
++ `axios.defaults.headers.common['token'] = token`;
 如果你每次请求接口需要验证，就加这个，不需要验证那就不用加
-+ `axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'`或`{headers: {'Content-Type': 'application/x-www-form-urlencoded'}}`; // 设置请求头
+<!-- + `axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'`或`{headers: {'Content-Type': 'application/x-www-form-urlencoded'}}`; // 设置请求头 -->
++ qs.stringify()
 ``` html
 <script>
 import axios from "axios";
@@ -267,8 +268,8 @@ export default {
 ### axios拦截器 interceptors  
 页面发送http请求，很多情况我们要对请求和其响应进行特定的处理；如果请求数非常多，单独对每一个请求进行处理会变得非常麻烦，程序的优雅性也会大打折扣。好在强大的axios为开发者提供了这样一个API：拦截器。拦截器分为 请求（request）拦截器和 响应（response）拦截器。
 > 前端请求接口时首先向服务端发送请求的接口加参数 这个步骤称之为request
-request 对象代表了一个HTTP请求，其具有一些属性来保存请求中的一些数据，比如query string，body，HTTP headers等等。
-+ query get请求附带的参数
+request 对象代表了一个HTTP请求，其具有一些属性来保存请求中的一些数据，比如params string，body，HTTP headers等等。
++ params get请求附带的参数
 + body post请求附带的参数
 + HTTP headers 提交数据类型
 
@@ -288,7 +289,7 @@ axios.interceptors.request.use(function (config) {
     // 例  在请求的时候开启elementui的loading
   loadings = Loading.service({ fullscreen: true });
   if(config.method == "post"){
-      config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+      config.data = qs.stringify(config.data);
   }
   
   console.log(config)
@@ -345,7 +346,7 @@ get请求和post请求传参的写法
 <script>
 import axios from 'axios'
 import { Loading } from 'element-ui'
-
+import qs from "qs"
 
 const service = axios.create({
   baseURL: "http://localhost:3000", // api的base_url
@@ -361,7 +362,8 @@ service.interceptors.request.use(config => {
 //     config.headers['X-Token'] = token
 //   }
   if(config.method == "post"){
-    config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+    // config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+    config.data = qs.stringify(config.data)
   }
   loadings = Loading.service({ fullscreen: true });
   return config

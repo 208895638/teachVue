@@ -1,0 +1,12 @@
+div{
+    font-size: 50px;
+    width: 500px;
+    height: 250px;
+    font-family:wl;
+    /* background: url(./sj.jpg) no-repeat center;
+    background-size: cover; */
+}
+@font-face {
+font-family: "wl";
+src: url("./wl/wl.ttf") format("truetype");
+}

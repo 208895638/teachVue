@@ -1,0 +1,11 @@
+div {
+  color: red;
+  font-family: "wl";
+}
+
+@font-face {
+  font-family: "wl";
+  src: url("../src/wl.ttf");
+  font-weight: 600;
+  font-style: normal;
+}

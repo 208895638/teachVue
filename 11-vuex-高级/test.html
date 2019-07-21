@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = [
+            {
+                num:1
+            },
+            {
+                num:2
+            },
+            {
+                num:3
+            },
+            {
+                num:4
+            },
+            {
+                num:5
+            },
+        ];
+        var arrs = [
+            [1,2],
+            3,
+            [4,5,[6]]
+        ];   // [1,2,3,4,5,6]
+        var func = function(total,current){
+            console.log(total,current,typeof(current))
+            if(typeof(current) == "object"){
+                var child = current.reduce(func,[])
+                return  total.push(...child) 
+            }else{
+               return  total.push(current) 
+            }
+        }
+        var a = arrs.reduce(func,[]);
+        console.log(a)
+        // arr.reduce(function(total , next){
+        //     console.log(total,next);
+        //     total.num = total.num + next.num
+        //     return total
+            
+        // },10)
+    </script>
+</body>
+</html>
